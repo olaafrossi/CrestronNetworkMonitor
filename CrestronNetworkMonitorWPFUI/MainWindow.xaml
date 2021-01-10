@@ -5,20 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrestronNetworkMonitorWPFUI"
         mc:Ignorable="d"
-        Title="Crestron Network Monitor" Height="450" Width="800" WindowStyle="SingleBorderWindow" WindowState="Minimized">
+        Title="Crestron Network Monitor" Height="450" Width="800" WindowStyle="SingleBorderWindow" WindowState="Minimized" Background="Black">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" FontFamily="Segoe UI" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="Crestron UDP Log"  Margin="0, 10, 0, 10"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" FontFamily="Segoe UI" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="Application Log"  Margin="0, 10, 0, 10"/>
-        <TextBox Grid.Row="1" Grid.Column="0" FontFamily="Segoe UI" x:Name="crestronLogText" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Visible" Margin="0, 10, 0, 10"/>
-        <TextBox Grid.Row="1" Grid.Column="1" FontFamily="Segoe UI" x:Name="appLogText" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Visible" Margin="0, 10, 0, 10"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" FontFamily="Segoe UI" Background="Black" Foreground="Azure" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="Crestron UDP Log"  Margin="5, 10, 0, 0"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" FontFamily="Segoe UI" Background="Black" Foreground="Azure" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="Application Log"  Margin="5, 10, 0, 0"/>
+        <TextBox Grid.Row="1" Grid.Column="0" FontFamily="Segoe UI" Background="Black" Foreground="Azure" x:Name="crestronLogText" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Visible" Margin="0, 5, 0, 0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" FontFamily="Segoe UI" Background="Black" Foreground="Azure" x:Name="appLogText" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Visible" Margin="0, 5, 0, 0"/>
     </Grid>
 </Window>
