@@ -29,8 +29,8 @@ namespace CrestronNetworkMonitorWPFUI
         {
             InitializeComponent();
             ThreadPool.QueueUserWorkItem(ListenLoop);
-            var log = appLogText;
-            WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} {DateTime.Now.Date.ToString()} Application loop starting ");
+            var log = appLogText; // set logger context
+            WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} {DateTime.Now.Date.ToString("d")} Application loop starting ");
         }
 
         public void WriteLine(TextBox log, string format, params object[] args)
@@ -65,7 +65,7 @@ namespace CrestronNetworkMonitorWPFUI
 
         private void ListenLoop(object state)
         {
-            //Open a UDP listener on port 16009
+            // Open a UDP listener on port 16009
             UdpClient udpClient = new UdpClient(UDP_LISTEN_PORT);
 
             bool listening = true;
@@ -73,27 +73,28 @@ namespace CrestronNetworkMonitorWPFUI
             byte[] dataBytes;
 
             var log = appLogText;
-            WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} UDP Listener started on port {UDP_LISTEN_PORT}");
+            WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} UDP listener started on port {UDP_LISTEN_PORT}");
 
             while(listening) 
             {
-                log = appLogText;
-                WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Listening: {remoteHost.Address.ToString()} on Port: {remoteHost.Port}");
+                log = appLogText; 
+                WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Last Remote: {remoteHost.Address.ToString()} on Port: {remoteHost.Port}");
                 dataBytes = udpClient.Receive(ref remoteHost);
                 log = crestronLogText;
                 WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Received Raw String: {dataBytes.Length} Bytes: {Encoding.ASCII.GetString(dataBytes)}");
                 
-                //Incoming commands must be received as a single packet.
-                string stringIn = Encoding.ASCII.GetString(dataBytes).ToUpper();
-                WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Parsed String In: {stringIn}");
+                string stringIn = Encoding.ASCII.GetString(dataBytes); // Incoming commands must be received as a single packet.
+                stringIn = stringIn.ToUpper(); // format the string to upper case for matching
+
+                //WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Parsed String In: {stringIn}");
                 
-                //Parse messages separated by cr
-                int delimPos = stringIn.IndexOf("\n");
+                //Parse messages separated by lf
+                int delimPos = stringIn.IndexOf("\r");
                 while(delimPos >= 0) 
                 {
                     string message = stringIn.Substring(0, delimPos + 1).Trim();
                     stringIn = stringIn.Remove(0, delimPos + 1);  //remove the message
-                    delimPos = stringIn.IndexOf("\n");
+                    delimPos = stringIn.IndexOf("\r");
 
                     log = crestronLogText;
                     WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Message: {message}");
@@ -104,7 +105,7 @@ namespace CrestronNetworkMonitorWPFUI
                     } 
                     else if(message == "PING") 
                     {
-                        string responseString = "PONG";
+                        string responseString = "PONG\r";
                         byte[] sendBytes = Encoding.ASCII.GetBytes(responseString);
                         udpClient.Send(sendBytes, sendBytes.Length, remoteHost);
                         log = appLogText;

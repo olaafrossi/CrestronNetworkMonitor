@@ -12,4 +12,8 @@
 </PackageReleaseNotes>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;0071</NoWarn>
+  </PropertyGroup>
+
 </Project>
