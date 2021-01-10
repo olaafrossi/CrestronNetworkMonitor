@@ -76,9 +76,7 @@ namespace CrestronNetworkMonitorWPFUI
                 string stringIn = Encoding.ASCII.GetString(dataBytes); // Incoming commands must be received as a single packet.
                 stringIn = stringIn.ToUpper(); // format the string to upper case for matching
 
-                //WriteLine(log, $"{DateTime.Now.ToString("HH:mm:ss.fff")} Parsed String In: {stringIn}");
-                
-                //Parse messages separated by lf
+                //Parse messages separated by cr
                 int delimPos = stringIn.IndexOf("\r");
                 while(delimPos >= 0) 
                 {
