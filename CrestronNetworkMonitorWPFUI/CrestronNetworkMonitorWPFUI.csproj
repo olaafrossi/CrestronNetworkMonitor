@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>3byte.ico</ApplicationIcon>
+    <Authors>Chris Keitel, Olaaf Rossi</Authors>
+    <Company>Three Byte Intermedia, Inc</Company>
+    <Copyright>Three Byte Intermedia, Inc 2021</Copyright>
+    <PackageReleaseNotes>
+</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+  </ItemGroup>
+
+</Project>

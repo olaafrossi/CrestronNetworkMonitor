@@ -1,0 +1,24 @@
+﻿<Window x:Class="CrestronNetworkMonitorWPFUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrestronNetworkMonitorWPFUI"
+        mc:Ignorable="d"
+        Title="Crestron Network Monitor" Height="450" Width="800" WindowStyle="SingleBorderWindow" WindowState="Minimized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" FontFamily="Segoe UI" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="Crestron UDP Log"  Margin="0, 10, 0, 10"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" FontFamily="Segoe UI" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="Application Log"  Margin="0, 10, 0, 10"/>
+        <TextBox Grid.Row="1" Grid.Column="0" FontFamily="Segoe UI" x:Name="crestronLogText" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Visible" Margin="0, 10, 0, 10"/>
+        <TextBox Grid.Row="1" Grid.Column="1" FontFamily="Segoe UI" x:Name="appLogText" MaxHeight="700" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Visible" Margin="0, 10, 0, 10"/>
+    </Grid>
+</Window>
