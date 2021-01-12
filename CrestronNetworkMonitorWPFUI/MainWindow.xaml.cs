@@ -45,7 +45,7 @@ namespace CrestronNetworkMonitorWPFUI
 
                 Dispatcher.Invoke(() =>
                 {
-                    log.AppendText(formattedStr + "\n");
+                    log.AppendText($"{formattedStr} \n");
                     log.ScrollToEnd();
                 });
             }
@@ -57,7 +57,7 @@ namespace CrestronNetworkMonitorWPFUI
         {
             // Open a UDP listener on port 16009
             UdpClient udpClient = new UdpClient(UDP_LISTEN_PORT);
-
+            
             bool listening = true;
             IPEndPoint remoteHost = new IPEndPoint(IPAddress.Any, 0);
             byte[] dataBytes;
