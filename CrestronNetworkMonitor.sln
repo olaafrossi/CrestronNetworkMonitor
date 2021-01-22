@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrestronNetworkMonitorWPFUI", "CrestronNetworkMonitorWPFUI\CrestronNetworkMonitorWPFUI.csproj", "{9C3284D9-E5DC-4BE0-A34D-AC95390DF0E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrestronNetworkMonitorWPFUI", "CrestronNetworkMonitorWPFUI\CrestronNetworkMonitorWPFUI.csproj", "{9C3284D9-E5DC-4BE0-A34D-AC95390DF0E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreeByteLibrary.Dotnet.Standard", "..\ThreeByteLibrary\ThreeByteLibrary.Dotnet.Standard\ThreeByteLibrary.Dotnet.Standard.csproj", "{9BDC5F1F-60BD-4CBA-A0DA-797A0F0D46EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrestronNetworkMonitorConsoleUI", "CrestronNetworkMonitorConsoleUI\CrestronNetworkMonitorConsoleUI.csproj", "{30F5324C-01FE-4B7D-9043-0E9F0B06E36E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9C3284D9-E5DC-4BE0-A34D-AC95390DF0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C3284D9-E5DC-4BE0-A34D-AC95390DF0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C3284D9-E5DC-4BE0-A34D-AC95390DF0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BDC5F1F-60BD-4CBA-A0DA-797A0F0D46EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDC5F1F-60BD-4CBA-A0DA-797A0F0D46EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDC5F1F-60BD-4CBA-A0DA-797A0F0D46EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDC5F1F-60BD-4CBA-A0DA-797A0F0D46EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F5324C-01FE-4B7D-9043-0E9F0B06E36E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F5324C-01FE-4B7D-9043-0E9F0B06E36E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F5324C-01FE-4B7D-9043-0E9F0B06E36E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F5324C-01FE-4B7D-9043-0E9F0B06E36E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
