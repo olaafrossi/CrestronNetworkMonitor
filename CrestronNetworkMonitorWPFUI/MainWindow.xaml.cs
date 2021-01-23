@@ -1,34 +1,49 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Extensions.DependencyInjection;
-using ThreeByteLibrary.Dotnet.Standard;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Events;
+using ThreeByteLibrary.Dotnet.Standard;
 
 namespace CrestronNetworkMonitorWPFUI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            SetupApp();
+            InitializeComponent();
+        }
+
+        // This is the DI code that works,
+        // but i can't seem to find a way to get events back to write to the UI
+
+        public void SetupApp()
+        {
             var builder = new ConfigurationBuilder();
             BuildConfig(builder);
+
+            // setup a console logger and logger to the Windows event viewer-
+            // note, must run a PS script to build the Windows event viewer log entry
+            // figure out a clean way to write and distribute the script
 
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(builder.Build())
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
+                .WriteTo.EventLog("ThreeByteCrestronNetworkMonitor",
+                    "Application", ".", false,
+                    "{Message}", restrictedToMinimumLevel: LogEventLevel.Verbose, eventIdProvider: null,
+                    formatProvider: null)
                 .CreateLogger();
 
+            // write our first log message
             Log.Logger.Information("Application Starting");
 
             var host = Host.CreateDefaultBuilder()
@@ -41,40 +56,27 @@ namespace CrestronNetworkMonitorWPFUI
 
             // launch the class
             var svcPcNetworkListener = ActivatorUtilities.CreateInstance<PcNetworkListener>(host.Services);
-
             svcPcNetworkListener.Run();
-
-            // launch the WPF window
-            InitializeComponent();
-
-            string happy = svcPcNetworkListener.userMessages.Message;
-            WriteLine(happy);
         }
 
-        static void BuildConfig(IConfigurationBuilder builder)
+        private static void BuildConfig(IConfigurationBuilder builder)
         {
             builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
-                        optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile(
+                    $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
+                    true)
                 .AddEnvironmentVariables();
         }
 
-        private void UserMessages_MessageChanged(object sender, PcNetworkListener.CrestronAppMessages e)
-        {
-            //WriteLine(svcPc)
-        }
-
+        // maybe do a binding property here instead
         public void WriteLine(string message)
         {
-            
             Dispatcher.Invoke(() =>
-                {
-                    crestronLogText.AppendText($"{message} \n");
-                    crestronLogText.ScrollToEnd();
-                });
-
+            {
+                crestronLogText.AppendText($"{message} \n");
+                crestronLogText.ScrollToEnd();
+            });
         }
     }
 }
-
