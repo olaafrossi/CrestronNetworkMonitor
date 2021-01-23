@@ -10,6 +10,7 @@
     <Copyright>Three Byte Intermedia, Inc 2021</Copyright>
     <PackageReleaseNotes>
 </PackageReleaseNotes>
+    <AssemblyName>Crestron Network Monitor</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,7 +34,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Screenshots\EnableEventViewer.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Scripts\EnableWindowsEventViewerLogging.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
