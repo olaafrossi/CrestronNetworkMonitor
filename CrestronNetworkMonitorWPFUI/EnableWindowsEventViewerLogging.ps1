@@ -1,0 +1,1 @@
+eventcreate /ID 1 /L APPLICATION /T INFORMATION  /SO ThreeByteCrestronNetworkMonitor /D "Enabled Windows Logging for the Crestron Network Monitor"
