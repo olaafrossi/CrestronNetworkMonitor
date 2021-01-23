@@ -1,0 +1,77 @@
+[INFOS]
+Title=Crestron Network Monitor
+Author=Olaaf Rossi
+Version=1.0.0
+DeviceMark=Three Byte Intermedia
+Model=
+Description=For info: https://github.com/olaafrossi/CrestronNetworkMonitor
+[TYPE]
+Communication=TCP/UDP Server
+Port=8000
+Exclusive port=0
+Bind on specified=0
+Specified address=127.0.0.1
+Multicast=0
+Default Address=127.0.0.1
+Default Port=16009
+Multicast address=
+Max input packet size=4096
+[FRAMES]
+Count of bytes=0
+Hexa character=!
+Decimal character=&
+Header character=
+Ending character=!0D
+Convert non literal mode=0
+Keep frames=0
+Input checksum verification=0
+Output checksum verification=1
+Checksum character=@
+Timeout between bytes=250
+[EXCLUDED CHARACTERS]
+Count=0
+Not in header/ending=1
+Checksum before replacement=0
+[CHECKSUM]
+Checksum type=SUM
+CRC16 mask=A001
+CRC16 initial value=0000
+CRC8 mask=8C
+CRC8 initial value=FF
+Start checksum at=0
+Stop checksum from=
+Checksum count=1
+Checksum position from end=
+Checksum two's complement=0
+Checksum ASCII coded=0
+Checksum high byte first=1
+[COMMANDS]
+Count=4
+Command0.Name=Shutdown
+Command0.Frame=SHUTDOWN!0D
+Command1.Name=Reboot
+Command1.Frame=REBOOT!0D
+Command2.Name=Ping
+Command2.Frame=PING!0D
+Command3.Name=Sleep
+Command3.Frame=SLEEP!0D
+[POSITRACK GROUPS]
+Count=0
+[ANSWERS]
+For each mode=0
+For each frame=
+Count=0
+[MONITORING]
+FixedLengthChar=X
+VariableLengthChar=?
+Requests count=1
+Request.0=PING!0D
+RequestPeriod.0=10
+RequestLink.0=
+Wait for answer=1
+Timeout Answer=3000
+Variables count=0
+[AUTOMATION]
+Connection mode=1
+Deconnection mode=1
+Deconnection delay=20
