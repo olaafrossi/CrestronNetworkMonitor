@@ -4,6 +4,8 @@ This project allows IT & AV System professionals to remotely Shutdown, Restart, 
 
 Additionally, the application listens for a Ping message, and responds with Pong, so that the User Interface of your control system can verify that the PC is up and running at the application level (as opposed to a low level ICMP ping that just tells you that the PC network stack is up, but doesn't tell you if the computer is locked up). *Important Note* This is not an ICMP Ping, this is a command and response from the application.
 
+The application starts up minimized, but has two log views so you can easily see communications with the controller sending message as well as startup information. 
+
 For information on how to control this application & PC's with Crestron, please refer to this [blog post](http://3-byte.com/blog/2010/11/18/network-shutdown)
 
 It's very similar for AMX. 
@@ -27,32 +29,44 @@ The application is expecting a carriage return on every frame. The syntax is eit
 **Responses**
 1. PONG!0D (only to a PING!0D)
 
-Note that all of these commands with the exception of the Ping are forced commands on the PC receiving them, and any data will be lost. This application is intended for museum and corporate environments where there are many PC's connected to display devices such as projectors and touchscreens and it would be tedious to manually shut them down daily, and wasteful to keep them running all night when the system is not in use.
+Note that all of these commands with the exception of the Ping, are forced commands on the PC receiving them. This means any data will be lost on any running applications. These commands are intended for museum and corporate interactive/visitor environments where there are many PC's connected to display devices such as projectors and touchscreens and it would be tedious to manually shut them down daily, and wasteful to keep them running all night when the system is not in use.
 
-# 5. Security
+# 5. Starting PC's
+
+Your control system is responsible for remote starting the PC's. This is usually accomplished with Wake-On-Lan using Magic Packet. Most control systems support this, but there are also nice off the shelf free solutions like [this one](https://www.nirsoft.net/utils/wake_on_lan.html). Or, you can write or [use](https://powershell.one/code/11.html#:~:text=Wake%20On%20LAN%20is%20a,external%20tools%20such%20as%20WOL.) a PowerShell script to grab MAC addresses (this is essential) and send the commands over the network.
+
+# 6. Security
 
 There is no security implemented on the application level. It's assumed that the network is secure. If there is a desire for some security mechanism, please open a ticket and it will be considered. 
 
-# 5. Network Settings
+# 7. Network Settings
 
-The application will listen on any available network adapter, including multiple IP addresses bound to the same NIC. The port to which it responds (it only every responds to the PING command, with PONG) initialized with zero until a frame is sent, and the sender will either pass an explicit or random port to respond, the application will take that port number, and send the Pong message over that port. This is usually handled by the implementation of the network device in control systems, noting to worry about. 
+The application will listen on any available network adapter, including multiple IP addresses bound to the same NIC. The port to which it responds (it only every responds to the PING command, with PONG) is initialized with zero until a frame is sent, and the sender will either pass an explicit or random port to respond, the application will take that port number, and send the Pong message over that port. This is usually handled by the implementation of the network device in control systems, nothing to worry about. It will appear in the logs.  
 
-# 6. Medialon Manager Usage
+# 8. Medialon Manager Usage
 
-For a Medialon MLLC (which is somewhat redundant since Medialon provides a PC watchdog), use this MLLC driver, which has the commands and a monitoring feature to automatically send the ping command. 
+For a Medialon Control System (which is somewhat redundant since Medialon provides a PC watchdog), use this MLLC driver, which has the commands and a monitoring feature to automatically send the ping command. 
 
-The application starts up minimized, but has two log views so you can easily see communications with the controller sending message, and startup information. 
+MLLC's are installed in an annoying location here: *"C:\ProgramData\Medialon\CommonFiles\Low Level Communicator Drivers"* The MLLC is included with the application, but is also [here](https://github.com/olaafrossi/CrestronNetworkMonitor/blob/master/CrestronNetworkMonitorWPFUI/Scripts/ThreeByteCrestronNetworkMonitor.mllc) 
 
-# 7. Windows Event Viewer
-THe application can also log to the Windows Event Viewer, this is especially helpful to persist logs over long periods of time, and when working with enterprise management platforms, like Azure dashboards, ActiveDirectory, or aggregators like loggy, this can be super helpful rather than collecting logs from local drives on dozens or hundreds of machines. Some good info [here](https://www.loggly.com/ultimate-guide/centralizing-windows-logs/)
+# 9. Windows Event Viewer
+The application can also log to the Windows Event Viewer, this is especially helpful to persist logs over long periods of time, and when working with enterprise management platforms, like Azure dashboards, ActiveDirectory, or aggregators like loggy, this can be super helpful rather than collecting logs from local drives on dozens or hundreds of machines. Some good info [here](https://www.loggly.com/ultimate-guide/centralizing-windows-logs/)
 
-It is essential that this powershell script be run (and not changed. In the future I may make the logging context adjustable in the appsettings.json file, but for now the Windows Event Logger context is hard-coded).
+It is essential that this powershell script be run (and not be changed. In the future I may make the logging context adjustable in the appsettings.json file, but for now the Windows Event Logger context is hard-coded).
 
-Once run, refresh the event viewer by selecting "Action" in the menu, and then "Refresh". You should see the first entry like this:
+The PowerShell script is included with the application, but can also be downloaded [here](https://github.com/olaafrossi/CrestronNetworkMonitor/blob/master/CrestronNetworkMonitorWPFUI/Scripts/EnableWindowsEventViewerLogging.ps1)
+
+Once run, refresh the event viewer by selecting "Action" in the menu, and then click "Refresh". You should see the first entry like this:
 
 ![](CrestronNetworkMonitorWPFUI/Screenshots/EnableEventViewer.png)
 
+# 10. Building and Contributing
 
+The application is written in .Net 5 with Visual Studio 2019 and depends on a few nuget packages that are self explanatory. Most importantly, it also depends on a reference project to the Three Byte Class Library, which can be cloned [here](https://github.com/olaafrossi/ThreeByteLibrary). You may need to re-add the reference in the Solution Explorer. The class library contains the bulk of the code, and is setup with Dependency Injection, SeriLog and the appsettings.json config file are the injected properties. 
+
+# 11. Future
+
+If you have any requests, such as supported web sockets, API calls, or some security, please open a ticket for consideration. 
 
 
 
