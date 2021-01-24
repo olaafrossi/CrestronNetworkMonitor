@@ -1,6 +1,9 @@
-[![Build Status](https://3byte.beta.teamcity.com/app/rest/builds/buildType:(id:CrestronNetworkMonitor_Build)/statusIcon)](3byte.beta.teamcity.com/viewType.html?buildTypeId=myID&guest=1)
 
 
+Master Branch | Dev Branch
+------------ | -------------
+[![Build Status](https://3byte.beta.teamcity.com/app/rest/builds/buildType:(id:CrestronNetworkMonitor_BuildMasterBranch)/statusIcon)](3byte.beta.teamcity.com/viewType.html?buildTypeId=myID&guest=1) | [![Build Status](https://3byte.beta.teamcity.com/app/rest/builds/buildType:(id:CrestronNetworkMonitor_BuildDevBranch)/statusIcon)](3byte.beta.teamcity.com/viewType.html?buildTypeId=myID&guest=1)
+Build #: | Build #:
 
 # 1. Crestron Network Monitor
 
