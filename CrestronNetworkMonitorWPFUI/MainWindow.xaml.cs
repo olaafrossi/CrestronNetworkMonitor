@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -84,7 +85,7 @@ namespace CrestronNetworkMonitorWPFUI
         {
             Dispatcher.Invoke(() =>
             {
-                appVersionText.Text = $"App Version: {GetType().Assembly.GetName().Version.ToString()}";
+                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}";
             });
         }
     }
