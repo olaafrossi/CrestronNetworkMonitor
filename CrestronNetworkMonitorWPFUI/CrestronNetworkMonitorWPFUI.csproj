@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ThreeByteLibrary\ThreeByteLibrary.Dotnet.Standard\ThreeByteLibrary.Dotnet.Standard.csproj" />
+    <ProjectReference Include="..\..\ThreeByteLibrary\ThreeByteLibrary.Dotnet\ThreeByteLibrary.Dotnet.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
-using ThreeByteLibrary.Dotnet.Standard;
+using ThreeByteLibrary.Dotnet;
 
 namespace CrestronNetworkMonitorWPFUI
 {
