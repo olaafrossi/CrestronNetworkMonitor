@@ -19,6 +19,7 @@ namespace CrestronNetworkMonitorWPFUI
         {
             SetupApp();
             InitializeComponent();
+            WriteVersionNumberToUI();
         }
 
         // This is the DI code that works,
@@ -76,6 +77,14 @@ namespace CrestronNetworkMonitorWPFUI
             {
                 crestronLogText.AppendText($"{message} \n");
                 crestronLogText.ScrollToEnd();
+            });
+        }
+
+        public void WriteVersionNumberToUI()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                appVersionText.Text = $"App Version: {GetType().Assembly.GetName().Version.ToString()}";
             });
         }
     }

@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>3.0.0.0-xyz</Version>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>3byte.ico</ApplicationIcon>
     <Authors>Chris Keitel, Olaaf Rossi</Authors>
