@@ -1,3 +1,7 @@
+[![Build Status](https://3byte.beta.teamcity.com/app/rest/builds/buildType:(id:CrestronNetworkMonitor_Build)/statusIcon)](3byte.beta.teamcity.com/viewType.html?buildTypeId=myID&guest=1)
+
+
+
 # 1. Crestron Network Monitor
 
 This project allows IT & AV System professionals to remotely Shutdown, Restart, Sleep, a PC over a network, using simple UDP frames that can be generated from controls systems such as Crestron, AMX, Medialon, Widget Designer, or even from a terminal/powershell script, or a custom application that has low level networking functionality.
