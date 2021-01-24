@@ -14,9 +14,19 @@
     <PackageReleaseNotes>
 </PackageReleaseNotes>
     <AssemblyName>Crestron Network Monitor</AssemblyName>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <StartupObject>CrestronNetworkMonitorWPFUI.App</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;0071</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <NoWarn>1701;1702;0071</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NoWarn>1701;1702;0071</NoWarn>
   </PropertyGroup>
 
@@ -33,11 +43,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="3byte.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Screenshots\EnableEventViewer.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Scripts\EnableWindowsEventViewerLogging.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
