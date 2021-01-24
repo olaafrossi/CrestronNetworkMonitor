@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -83,9 +84,12 @@ namespace CrestronNetworkMonitorWPFUI
 
         public void WriteVersionNumberToUI()
         {
+            // should probably get the current directory to be safe, or wrap in a try-catch
+            FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("ThreeByteLibrary.Dotnet.dll");
+
             Dispatcher.Invoke(() =>
             {
-                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}";
+                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {threeByteLib.FileVersion}";
             });
         }
     }
