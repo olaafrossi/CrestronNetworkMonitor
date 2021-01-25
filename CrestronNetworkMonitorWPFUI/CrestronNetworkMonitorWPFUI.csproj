@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,7 +7,7 @@
     <FileVersion>0.0.0.0</FileVersion>
     <Version>0.0.0.0-dev</Version>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>3byte.ico</ApplicationIcon>
+    <ApplicationIcon>new3bicon.ico</ApplicationIcon>
     <Authors>Chris Keitel, Olaaf Rossi</Authors>
     <Company>Three Byte Intermedia, Inc</Company>
     <Copyright>Three Byte Intermedia, Inc 2021</Copyright>
@@ -15,7 +15,7 @@
 </PackageReleaseNotes>
     <AssemblyName>Crestron Network Monitor</AssemblyName>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <StartupObject>CrestronNetworkMonitorWPFUI.App</StartupObject>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -43,16 +43,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="3byte.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Screenshots\EnableEventViewer.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Scripts\EnableWindowsEventViewerLogging.ps1">
