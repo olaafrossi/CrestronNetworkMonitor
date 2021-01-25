@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +22,7 @@ namespace CrestronNetworkMonitorWPFUI
     {
         public MainWindow()
         {
+            CreateLocalDirectoryForAppFiles();
             SetupApp();
             InitializeComponent();
             WriteVersionNumberToUI();
@@ -62,10 +66,31 @@ namespace CrestronNetworkMonitorWPFUI
             svcPcNetworkListener.Run();
         }
 
+        private static void CreateLocalDirectoryForAppFiles()
+        {
+            AppSettings jsonSettings = new AppSettings();
+            string desiredFolder = Properties.Resources.LocalDataFolder;
+
+            //Ensure the directory exists
+            if(Directory.Exists(desiredFolder) is false)
+            {
+                Directory.CreateDirectory(desiredFolder);
+            }
+
+            string file = $"{desiredFolder}appsettings.json";
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+
+            string jsonString = JsonSerializer.Serialize(jsonSettings, options);
+            File.WriteAllText(file, jsonString);
+        }
+
         private static void BuildConfig(IConfigurationBuilder builder)
         {
             builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile(Properties.Resources.LocalDataFolderFile, false, true)
                 .AddJsonFile(
                     $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
                     true)
@@ -91,6 +116,17 @@ namespace CrestronNetworkMonitorWPFUI
             {
                 appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {threeByteLib.FileVersion}";
             });
+        }
+
+        private void SetDefaultData()
+        {
+            AppSettings jsonSettings = new AppSettings();
+            
+        }
+
+        public class AppSettings
+        {
+            public int UdpPort { get; set; } = 16009;
         }
     }
 }
