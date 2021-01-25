@@ -110,6 +110,8 @@ namespace CrestronNetworkMonitorWPFUI
         public void WriteVersionNumberToUI()
         {
             // should probably get the current directory to be safe, or wrap in a try-catch
+
+            // and this is crashing. Figure out a way to get this. Reflection?
             FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("ThreeByteLibrary.Dotnet.dll");
 
             Dispatcher.Invoke(() =>
