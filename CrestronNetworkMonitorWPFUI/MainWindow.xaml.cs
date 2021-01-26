@@ -60,6 +60,8 @@ namespace CrestronNetworkMonitorWPFUI
             // launch the class
             var svcPcNetworkListener = ActivatorUtilities.CreateInstance<PcNetworkListener>(host.Services);
             svcPcNetworkListener.Run();
+            //try getting the assembly name in this context
+            //FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("/ThreeByteLibrary.Dotnet.dll");
         }
 
         private static void BuildConfig(IConfigurationBuilder builder)
