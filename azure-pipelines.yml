@@ -3,6 +3,17 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
+resources:
+  repositories:
+  - repository: CrestronNetworkMonitor
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: MyGitHubOrgOrUser/MyGitHubRepo
+  - repository: ThreeByteLibrary
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: MyGitHubOrgOrUser/MyGitHubRepo2
+
 trigger:
 - main
 
