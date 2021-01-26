@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
@@ -27,17 +24,10 @@ namespace CrestronNetworkMonitorWPFUI
             SetupApp();
         }
 
-        // This is the DI code that works,
-        // but i can't seem to find a way to get events back to write to the UI
-
         public void SetupApp()
         {
             var builder = new ConfigurationBuilder();
             BuildConfig(builder);
-
-            // setup a console logger and logger to the Windows event viewer-
-            // note, must run a PS script to build the Windows event viewer log entry
-            // figure out a clean way to write and distribute the script
 
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(builder.Build())
@@ -65,7 +55,7 @@ namespace CrestronNetworkMonitorWPFUI
             svcPcNetworkListener.Run();
 
             // get the version number of the classlib and write it to to the UI
-            string libVersionNumber = System.Reflection.Assembly.GetAssembly(typeof(PcNetworkListener))?.GetName().Version.ToString();
+            string libVersionNumber = Assembly.GetAssembly(typeof(PcNetworkListener))?.GetName().Version.ToString();
             WriteVersionNumberToUI(libVersionNumber);
 
             svcPcNetworkListener.MessageHit += SvcPcNetworkListener_MessageHit;
@@ -73,9 +63,9 @@ namespace CrestronNetworkMonitorWPFUI
             //c.ThresholdReached += c_ThresholdReached;
         }
 
-        private void SvcPcNetworkListener_MessageHit(object sender, PcNetworkListener.CrestronAppMessages e)
+        private void SvcPcNetworkListener_MessageHit(object sender, PcNetworkListener.PCNetworkListenerMessages e)
         {
-            WriteLine("happy");
+            WriteLine(e);
         }
 
         private static void CreateLocalDirectoryForAppFiles()
@@ -84,7 +74,7 @@ namespace CrestronNetworkMonitorWPFUI
             string desiredFolder = Properties.Resources.LocalDataFolder;
 
             //Ensure the directory exists
-            if(Directory.Exists(desiredFolder) is false)
+            if (Directory.Exists(desiredFolder) is false)
             {
                 Directory.CreateDirectory(desiredFolder);
             }
@@ -92,7 +82,7 @@ namespace CrestronNetworkMonitorWPFUI
             string file = $"{desiredFolder}appsettings.json";
             var options = new JsonSerializerOptions
             {
-                WriteIndented = true,
+                WriteIndented = true
             };
 
             string jsonString = JsonSerializer.Serialize(jsonSettings, options);
@@ -101,35 +91,43 @@ namespace CrestronNetworkMonitorWPFUI
 
         private static void BuildConfig(IConfigurationBuilder builder)
         {
-            builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(Properties.Resources.LocalDataFolderFile, false, true)
+            builder.SetBasePath(Properties.Resources.LocalDataFolder)
+                .AddJsonFile("appsettings.json", false, true)
                 .AddJsonFile(
-                    $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
+                    $"appsettings.json.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
                     true)
                 .AddEnvironmentVariables();
         }
 
         // maybe do a binding property here instead
-        public void WriteLine(string message)
+        public void WriteLine(PcNetworkListener.PCNetworkListenerMessages e)
         {
-            Dispatcher.Invoke(() =>
+            if (e.UILogger == PcNetworkListener.PCNetworkListenerMessages._UiLogger.netLog)
             {
-                crestronLogText.AppendText($"{message} \n");
-                crestronLogText.ScrollToEnd();
-            });
+                Dispatcher.Invoke(() =>
+                {
+                    crestronLogText.AppendText($"{e.Message} \n");
+                    crestronLogText.ScrollToEnd();
+                });
+            }
+
+            if (e.UILogger == PcNetworkListener.PCNetworkListenerMessages._UiLogger.appLog)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    appLogText.AppendText($"{e.Message} \n");
+                    appLogText.ScrollToEnd();
+                });
+            }
         }
 
         public void WriteVersionNumberToUI(string message)
         {
             Dispatcher.Invoke(() =>
             {
-                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {message}";
+                appVersionText.Text =
+                    $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {message}";
             });
-        }
-
-        public class AppSettings
-        {
-            public int UdpPort { get; set; } = 16009;
         }
     }
 }
