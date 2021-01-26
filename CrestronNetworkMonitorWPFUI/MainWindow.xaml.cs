@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 using ThreeByteLibrary.Dotnet;
+using System.Diagnostics;
 
 namespace CrestronNetworkMonitorWPFUI
 {
@@ -136,6 +137,12 @@ namespace CrestronNetworkMonitorWPFUI
                 appVersionText.Text =
                     $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {message}";
             });
+        }
+
+        private void aboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Written by Three Byte www.3-byte.com", "Info", MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
     }
 }
