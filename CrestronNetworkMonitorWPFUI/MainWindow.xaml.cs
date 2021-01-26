@@ -67,6 +67,15 @@ namespace CrestronNetworkMonitorWPFUI
             // get the version number of the classlib and write it to to the UI
             string libVersionNumber = System.Reflection.Assembly.GetAssembly(typeof(PcNetworkListener))?.GetName().Version.ToString();
             WriteVersionNumberToUI(libVersionNumber);
+
+            svcPcNetworkListener.MessageHit += SvcPcNetworkListener_MessageHit;
+
+            //c.ThresholdReached += c_ThresholdReached;
+        }
+
+        private void SvcPcNetworkListener_MessageHit(object sender, PcNetworkListener.CrestronAppMessages e)
+        {
+            WriteLine("happy");
         }
 
         private static void CreateLocalDirectoryForAppFiles()
