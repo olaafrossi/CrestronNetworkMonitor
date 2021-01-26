@@ -17,6 +17,14 @@ For information on how to control this application & PC's with Crestron, please 
 
 It's very similar for AMX. 
 
+The application when running defaults to minimized, but it looks like this when opened:
+
+![](CrestronNetworkMonitorWPFUI/Screenshots/AppScreenshot.png)
+
+You can download the compiled [MSIX installer package here](https://olaafrossi.github.io/CrestronNetworkMonitorInstall/) 
+
+**Note, the certificate is currently self-signed (1-26-2021) I'm working on that..
+
 # 2. App Settings
 
 There is a simple appsettings.json located here: *C:\Program Files (x86)\Three Byte Intermedia* file included with the project. It's recommended to leave this alone, but you can adjust the UDP listener port, which is defaulted to 16009. The application will log which port it's using on startup, and there is error-checking in the application logic, such that if a port number is malformed or invalid, the port will default to 16009, and the log viewers will write this. 
