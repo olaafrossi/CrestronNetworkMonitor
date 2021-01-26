@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreeByteLibrary.Dotnet", "
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "CrestronNetworkMonitorInstaller", "CrestronNetworkMonitorInstaller\CrestronNetworkMonitorInstaller.wapproj", "{CAE0EAA4-A0F4-4502-80B0-40F2B7E767BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleJsonParse", "ConsoleJsonParse\ConsoleJsonParse.csproj", "{F6D7E268-A70B-4201-913D-2835B9343AAD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,26 +93,6 @@ Global
 		{CAE0EAA4-A0F4-4502-80B0-40F2B7E767BD}.Release|x86.ActiveCfg = Release|x86
 		{CAE0EAA4-A0F4-4502-80B0-40F2B7E767BD}.Release|x86.Build.0 = Release|x86
 		{CAE0EAA4-A0F4-4502-80B0-40F2B7E767BD}.Release|x86.Deploy.0 = Release|x86
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|ARM.Build.0 = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|x64.Build.0 = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Debug|x86.Build.0 = Debug|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|ARM.ActiveCfg = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|ARM.Build.0 = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|ARM64.Build.0 = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|x64.ActiveCfg = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|x64.Build.0 = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|x86.ActiveCfg = Release|Any CPU
-		{F6D7E268-A70B-4201-913D-2835B9343AAD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
