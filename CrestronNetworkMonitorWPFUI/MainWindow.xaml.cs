@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +22,12 @@ namespace CrestronNetworkMonitorWPFUI
     {
         public MainWindow()
         {
-            SetupApp();
+            CreateLocalDirectoryForAppFiles();
             InitializeComponent();
-            WriteVersionNumberToUI();
+            SetupApp();
+            
+            //SetupApp();
+            //WriteVersionNumberToUI();
         }
 
         // This is the DI code that works,
@@ -60,12 +66,36 @@ namespace CrestronNetworkMonitorWPFUI
             // launch the class
             var svcPcNetworkListener = ActivatorUtilities.CreateInstance<PcNetworkListener>(host.Services);
             svcPcNetworkListener.Run();
+            string libVersionNumber = System.Reflection.Assembly.GetAssembly(typeof(PcNetworkListener))?.GetName().Version.ToString();
+            
+            WriteVersionNumberToUI(libVersionNumber);
+        }
+
+        private static void CreateLocalDirectoryForAppFiles()
+        {
+            AppSettings jsonSettings = new AppSettings();
+            string desiredFolder = Properties.Resources.LocalDataFolder;
+
+            //Ensure the directory exists
+            if(Directory.Exists(desiredFolder) is false)
+            {
+                Directory.CreateDirectory(desiredFolder);
+            }
+
+            string file = $"{desiredFolder}appsettings.json";
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+
+            string jsonString = JsonSerializer.Serialize(jsonSettings, options);
+            File.WriteAllText(file, jsonString);
         }
 
         private static void BuildConfig(IConfigurationBuilder builder)
         {
             builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile(Properties.Resources.LocalDataFolderFile, false, true)
                 .AddJsonFile(
                     $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
                     true)
@@ -82,15 +112,26 @@ namespace CrestronNetworkMonitorWPFUI
             });
         }
 
-        public void WriteVersionNumberToUI()
+        public void WriteVersionNumberToUI(string message)
         {
             // should probably get the current directory to be safe, or wrap in a try-catch
-            FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("ThreeByteLibrary.Dotnet.dll");
+            //FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("ThreeByteLibrary.Dotnet.dll");
 
             Dispatcher.Invoke(() =>
             {
-                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {threeByteLib.FileVersion}";
+                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {message}";
             });
+        }
+
+        private void SetDefaultData()
+        {
+            AppSettings jsonSettings = new AppSettings();
+            
+        }
+
+        public class AppSettings
+        {
+            public int UdpPort { get; set; } = 16009;
         }
     }
 }
