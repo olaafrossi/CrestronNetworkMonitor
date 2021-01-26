@@ -9,7 +9,7 @@
   <Identity
     Name="BBDEB1E1-A753-4249-9A0E-5E55FD14E678-"
     Publisher="CN=olaaf"
-    Version="1.5.5.0" />
+    Version="1.7.7.0" />
 
   <Properties>
     <DisplayName>Crestron Network Monitor</DisplayName>

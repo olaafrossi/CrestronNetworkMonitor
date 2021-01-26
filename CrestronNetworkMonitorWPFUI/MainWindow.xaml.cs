@@ -23,9 +23,11 @@ namespace CrestronNetworkMonitorWPFUI
         public MainWindow()
         {
             CreateLocalDirectoryForAppFiles();
-            SetupApp();
             InitializeComponent();
-            WriteVersionNumberToUI();
+            SetupApp();
+            
+            //SetupApp();
+            //WriteVersionNumberToUI();
         }
 
         // This is the DI code that works,
@@ -64,6 +66,9 @@ namespace CrestronNetworkMonitorWPFUI
             // launch the class
             var svcPcNetworkListener = ActivatorUtilities.CreateInstance<PcNetworkListener>(host.Services);
             svcPcNetworkListener.Run();
+            string libVersionNumber = System.Reflection.Assembly.GetAssembly(typeof(PcNetworkListener))?.GetName().Version.ToString();
+            
+            WriteVersionNumberToUI(libVersionNumber);
         }
 
         private static void CreateLocalDirectoryForAppFiles()
@@ -107,14 +112,14 @@ namespace CrestronNetworkMonitorWPFUI
             });
         }
 
-        public void WriteVersionNumberToUI()
+        public void WriteVersionNumberToUI(string message)
         {
             // should probably get the current directory to be safe, or wrap in a try-catch
-            FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("ThreeByteLibrary.Dotnet.dll");
+            //FileVersionInfo threeByteLib = FileVersionInfo.GetVersionInfo("ThreeByteLibrary.Dotnet.dll");
 
             Dispatcher.Invoke(() =>
             {
-                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {threeByteLib.FileVersion}";
+                appVersionText.Text = $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {message}";
             });
         }
 
