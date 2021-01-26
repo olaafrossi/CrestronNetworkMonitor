@@ -19,7 +19,7 @@ namespace CrestronNetworkMonitorWPFUI
     {
         public MainWindow()
         {
-            CreateLocalDirectoryForAppFiles();
+            //CreateLocalDirectoryForAppFiles();
             InitializeComponent();
             SetupApp();
         }
@@ -40,7 +40,7 @@ namespace CrestronNetworkMonitorWPFUI
                 .CreateLogger();
 
             // write our first log message
-            Log.Logger.Information("Application Starting");
+            WriteLine($"{DateTime.Now:HH:mm:ss.fff} | Application Starting");
 
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
@@ -48,7 +48,7 @@ namespace CrestronNetworkMonitorWPFUI
                     services.AddTransient<IPcNetworkListener, PcNetworkListener>();
                 })
                 .UseSerilog()
-                .Build();
+                .Build(); 
 
             // launch the class
             var svcPcNetworkListener = ActivatorUtilities.CreateInstance<PcNetworkListener>(host.Services);
@@ -59,8 +59,16 @@ namespace CrestronNetworkMonitorWPFUI
             WriteVersionNumberToUI(libVersionNumber);
 
             svcPcNetworkListener.MessageHit += SvcPcNetworkListener_MessageHit;
+        }
 
-            //c.ThresholdReached += c_ThresholdReached;
+        static void BuildConfig(IConfigurationBuilder builder)
+        {
+            builder.SetBasePath("C:\\ThreeByteIntermedia\\CrestronNetworkMonitor\\Settings\\")
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile(
+                $"appsettings.json.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
+                true)
+            .AddEnvironmentVariables();
         }
 
         private void SvcPcNetworkListener_MessageHit(object sender, PcNetworkListener.PCNetworkListenerMessages e)
@@ -89,16 +97,6 @@ namespace CrestronNetworkMonitorWPFUI
             File.WriteAllText(file, jsonString);
         }
 
-        private static void BuildConfig(IConfigurationBuilder builder)
-        {
-            builder.SetBasePath(Properties.Resources.LocalDataFolder)
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile(
-                    $"appsettings.json.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
-                    true)
-                .AddEnvironmentVariables();
-        }
-
         // maybe do a binding property here instead
         public void WriteLine(PcNetworkListener.PCNetworkListenerMessages e)
         {
@@ -119,6 +117,16 @@ namespace CrestronNetworkMonitorWPFUI
                     appLogText.ScrollToEnd();
                 });
             }
+        }
+
+        public void WriteLine(string message)
+        {
+            Log.Logger.Information(message);
+            Dispatcher.Invoke(() =>
+                {
+                    appLogText.AppendText($"{message} \n");
+                    appLogText.ScrollToEnd();
+                });
         }
 
         public void WriteVersionNumberToUI(string message)
