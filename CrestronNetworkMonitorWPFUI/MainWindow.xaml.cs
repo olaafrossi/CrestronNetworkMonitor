@@ -135,7 +135,7 @@ namespace CrestronNetworkMonitorWPFUI
             Dispatcher.Invoke(() =>
             {
                 appVersionText.Text =
-                    $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}, 3Byte Library Version: {message}";
+                    $"App Version: {Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>().Version}";
             });
         }
 
