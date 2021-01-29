@@ -21,7 +21,13 @@ The application when running defaults to minimized, but it looks like this when 
 
 ![](CrestronNetworkMonitorWPFUI/Screenshots/AppScreenshot.png)
 
-You can download the code-signed compiled application in a zip file from Releases [MSIX installer package here](https://olaafrossi.github.io/CrestronNetworkMonitorInstall/) 
+Here is how it's written in Crestron:
+
+![](CrestronNetworkMonitorWPFUI/Screenshots/Crestron-Shutdown.png)
+
+You can download the code-signed compiled application in a zip file from Releases [Zip here](https://github.com/olaafrossi/CrestronNetworkMonitor/releases/download/1.0.43.1004/CrestronNetworkMonitor.zip) 
+
+If you don't have the latest verison of Windows 10, the application will open a web broswer and prompt you to download the .Net 5 runtime, pick the x64 version.
 
 # 2. App Settings
 
