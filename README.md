@@ -11,7 +11,7 @@ This project allows IT & AV System professionals to remotely Shutdown, Restart, 
 
 Additionally, the application listens for a Ping message and responds with Pong, so that the User Interface of your control system can verify that the PC is up and running at the application level (as opposed to a low level ICMP ping that just tells you that the PC network stack is up, but doesn't tell you if the computer is locked up). *Important Note* This is not an ICMP Ping, this is a command and response from the application.
 
-The application starts up minimized, but has two log views so you man easily see communications with the controller, sending message as well as startup information. 
+The application starts up minimized, but has two log views so you may easily see communications with the controller, sending message as well as startup information. 
 
 For information on how to control this application & PC's with Crestron, please refer to this [blog post](http://3-byte.com/blog/2010/11/18/network-shutdown)
 
@@ -31,7 +31,7 @@ If you don't have the latest verison of Windows 10, the application will open a 
 
 # 2. App Settings
 
-There is a simple appsettings.json located here: *install Location* file included with the project. It's recommended to leave this alone, but you can adjust the UDP listener port, which is defaulted to 16009. The application will log which port it's using on startup, and there is error-checking in the application logic, such that if a port number is malformed or invalid, the port will default to 16009, and the log viewers will write this. 
+There is a simple appsettings.json located here: *"folder Location"* file included with the project. It's recommended to leave this alone, but you can adjust the UDP listener port, which is defaulted to 16009. The application will log which port it's using on startup, and there is error-checking in the application logic, such that if a port number is malformed or invalid, the port will default to 16009, and the log viewers will write this. 
 
 # 3. Frame Syntax
 
@@ -70,9 +70,9 @@ The application will listen on any available network adapter, including multiple
 
 For a Medialon Control System (which is somewhat redundant since Medialon provides a PC watchdog), use this MLLC driver, which has the commands and a monitoring feature to automatically send the ping command. 
 
-The MLLC written is located with the application under this path: *C:\Program Files (x86)\Three Byte Intermedia\Scripts*
+The MLLC written is located with the application under this path: *"folder Location/Scripts"*
 
-MLLC's are installed in an annoying location here: *"C:\ProgramData\Medialon\CommonFiles\Low Level Communicator Drivers"* The MLLC is included with the application, but is also [here](https://github.com/olaafrossi/CrestronNetworkMonitor/blob/master/CrestronNetworkMonitorWPFUI/Scripts/ThreeByteCrestronNetworkMonitor.mllc) 
+MLLC's are installed by Medialon in an annoying location here: *"C:\ProgramData\Medialon\CommonFiles\Low Level Communicator Drivers"* The MLLC is included with the application, but is also [here](https://github.com/olaafrossi/CrestronNetworkMonitor/blob/master/CrestronNetworkMonitorWPFUI/Scripts/ThreeByteCrestronNetworkMonitor.mllc) 
 
 # 9. Windows Event Viewer
 The application can also log to the Windows Event Viewer, this is especially helpful to persist logs over long periods of time, and when working with enterprise management platforms, like Azure dashboards, ActiveDirectory, or aggregators like loggy, this can be super helpful rather than collecting logs from local drives on dozens or hundreds of machines. Some good info [here](https://www.loggly.com/ultimate-guide/centralizing-windows-logs/)
