@@ -1,4 +1,4 @@
-<a href="https://http://olaaf.ddns.net//viewType.html?buildTypeId=PCControllerWPF_BuildPcControllerMaster&guest=1">;
+<a href="https://http://olaaf.ddns.net//viewType.html?buildTypeId=PCControllerWPF_BuildPcControllerMasterbt&Nguest=1">;
   
 <img src="https://http://olaaf.ddns.net/L/app/rest/builds/buildType:(id:PCControllerWPF_BuildPcControllerMaster)/statusIcon"/>;
 
