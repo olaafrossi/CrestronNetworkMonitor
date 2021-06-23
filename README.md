@@ -1,6 +1,5 @@
 [![Build Status](http://olaaf.ddns.net/app/rest/builds/buildType:id:PCControllerWPF_BuildPcControllerMaster/statusIcon)]
 
-(http://olaaf.ddns.net/viewType.html?buildTypeId=PCControllerWPF_BuildPcControllerMaster&guest=1)
 
 # 1. Crestron Network Monitor
 
