@@ -1,6 +1,6 @@
 <a href="https://http://olaaf.ddns.net//viewType.html?buildTypeId=PCControllerWPF_BuildPcControllerMaster&guest=1">;
+  
 <img src="https://http://olaaf.ddns.net/L/app/rest/builds/buildType:(id:PCControllerWPF_BuildPcControllerMaster)/statusIcon"/>;
-&lt;/a&gt;
 
 [![Build Status](https://3byte.beta.teamcity.com/app/rest/builds/buildType:(id:CrestronNetworkMonitor_BuildMasterBranch)/statusIcon)](3byte.beta.teamcity.com/viewType.html?buildTypeId=myID&guest=1) | [![Build Status](https://3byte.beta.teamcity.com/app/rest/builds/buildType:(id:CrestronNetworkMonitor_BuildDevBranch)/statusIcon)](3byte.beta.teamcity.com/viewType.html?buildTypeId=myID&guest=1)
 Build #: | Build #:
