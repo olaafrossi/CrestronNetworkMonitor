@@ -1,4 +1,5 @@
 [![Build Status](http://olaaf.ddns.net/app/rest/builds/buildType:id:PCControllerWPF_BuildPcControllerMaster/statusIcon)]
+[![Build status](http://olaaf.ddns.net/guestAuth/app/rest/builds/buildType:(id:MosesExperiance_BuildUnityApp)/statusIcon](http://olaaf.ddns.net/viewType.html?buildTypeId=MosesExperiance_BuildUnityApp)
 
 
 # 1. Crestron Network Monitor
