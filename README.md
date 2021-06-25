@@ -3,7 +3,7 @@
 
 
 
-[![Build status](http://olaaf.ddns.net/guestAuth/app/rest/builds/buildType:(id:MosesExperiance_BuildUnityApp)/statusIcon]
+[![Build status](http://olaaf.ddns.net/app/rest/builds/buildType:id:MosesExperiance_BuildUnityApp/statusIcon)
 
 
 # 1. Crestron Network Monitor
