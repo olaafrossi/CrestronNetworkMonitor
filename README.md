@@ -1,4 +1,4 @@
-[![Build Status](http://olaaf.ddns.net/app/rest/builds/buildType:id:PCControllerWPF_BuildPcControllerMaster/statusIcon)]
+![Build Status](http://olaaf.ddns.net/app/rest/builds/buildType:id:PCControllerWPF_BuildPcControllerMaster/statusIcon)
 
 
 
